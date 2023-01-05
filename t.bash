@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# t - https://github.com/nick-f/t
+#
 # Search your project directories and open a new Tmux session for the selected project
 #
 # Environment variables:
