@@ -50,3 +50,12 @@ t
 
 T_PATHS="~/Code" t
 ```
+
+## Contributing
+
+This project uses [Semantic Versioning] and [Conventional Commits].
+
+[Semantic Versioning]: https://semver.org
+[Conventional Commits]: https://www.conventionalcommits.org/en/v1.0.0/
+
+PRs welcome.
