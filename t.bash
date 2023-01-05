@@ -1,24 +1,32 @@
 #!/usr/bin/env bash
 
 # t - https://github.com/nick-f/t
-#
 # Search your project directories and open a new Tmux session for the selected project
 #
-# Environment variables:
-#   - T_PATHS
-#       List of paths to search, separated by T_PATHS_DELIMITER. These should be
-#       absolute paths unless you know what you're doing.
-#       Example: T_PATHS="~/Code ~"
-#   - T_PATHS_DELIMITER
-#       Delimiter used when specifying paths. Change this if you have paths
-#       that contain spaces in them.
-#       Default: <space>
-
 # Inspired by https://github.com/jessarcher/dotfiles/blob/master/scripts/t and by extension
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 
 t_paths=${T_PATHS:-}
 t_paths_delimiter=${T_PATHS_DELIMITER:- }
+
+help_text() {
+	echo "t - https://github.com/nick-f/t
+
+usage: [environment_variables] $(basename "$0")
+
+Set T_PATHS in your shell profile or on a per-command basis to search additional directories.
+
+Environment variables
+  T_PATHS
+    List of paths to search, separated by T_PATHS_DELIMITER. These should be
+    absolute paths unless you know what you're doing.
+    Example: T_PATHS="~/Code ~"
+
+  T_PATHS_DELIMITER
+    Delimiter used when specifying paths. Change this if you have paths
+    that contain spaces in them.
+    Default: <space>"
+}
 
 search_path() {
 	local path; path=$(expand_path "$1")
@@ -48,6 +56,11 @@ candidate_list() {
 
 	echo "$candidates"
 }
+
+if [[ "$1" = "--help" ]]; then
+	help_text
+	exit 0
+fi
 
 if [[ $# -eq 1 ]]; then
 	selected="$1"
