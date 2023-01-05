@@ -4,14 +4,27 @@ Search your project directories and open a new Tmux session for the selected pro
 
 ## Installation
 
+### Dependencies
+
 t uses [fzf](https://github.com/junegunn/fzf) and bash.
+
+### Homebrew
 
 Installing through [homebrew](https://brew.sh/) is recommended, as you'll get
 the dependencies automatically.
 
+Homebrew renames the script to simply `t`.
+
 ```
 brew install nick-f/labs/t
 ```
+
+### Manual installation
+
+Download [t.bash](https://github.com/nick-f/t/blob/main/t.bash) and place it in a folder
+that is included in your `PATH`.
+
+To make it easier to type you can rename it to `t`.
 
 ## Configuration
 
