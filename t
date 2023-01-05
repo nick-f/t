@@ -4,10 +4,10 @@
 #
 # Environment variables:
 #   - T_PATHS
-#       List of paths to search, separated by T_PATH_DELIMITER. These should be
+#       List of paths to search, separated by T_PATHS_DELIMITER. These should be
 #       absolute paths unless you know what you're doing.
-#       Example: t_paths="~/Code ~"
-#   - T_PATH_DELIMITER
+#       Example: T_PATHS="~/Code ~"
+#   - T_PATHS_DELIMITER
 #       Delimiter used when specifying paths. Change this if you have paths
 #       that contain spaces in them.
 #       Default: <space>
@@ -16,7 +16,7 @@
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 
 t_paths=${T_PATHS:-}
-t_path_delimiter=${T_PATH_DELIMITER:- }
+t_paths_delimiter=${T_PATHS_DELIMITER:- }
 
 search_path() {
   local path; path=$(expand_path "$1")
@@ -35,7 +35,7 @@ candidate_list() {
   candidates=$(echo -e "/tmp")
 
   if [[ -n ${t_paths} ]]; then
-    readarray -d "$t_path_delimiter" -t t_paths<<<"${t_paths}"
+    readarray -d "$t_paths_delimiter" -t t_paths<<<"${t_paths}"
 
     if [[ ${#t_paths[@]} -gt 0 ]]; then
       for path in "${t_paths[@]}"; do
@@ -50,17 +50,7 @@ candidate_list() {
 if [[ $# -eq 1 ]]; then
   selected="$1"
 else
-  candidates=$(echo -e "/tmp")
-
-  if [[ -n ${t_paths[0]} ]]; then
-    readarray -d "$t_path_delimiter" -t t_paths<<<"${t_paths}"
-
-    if [[ ${#t_paths[@]} -gt 0 ]]; then
-      for path in "${t_paths[@]}"; do
-        candidates+=$(search_path "$path")
-      done
-    fi
-  fi
+  candidates=$(candidate_list)
 
   selected=$(expand_path "$(echo "$candidates" | fzf)")
 fi
