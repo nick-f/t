@@ -50,17 +50,7 @@ candidate_list() {
 if [[ $# -eq 1 ]]; then
   selected="$1"
 else
-  candidates=$(echo -e "/tmp")
-
-  if [[ -n ${t_paths[0]} ]]; then
-    readarray -d "$t_path_delimiter" -t t_paths<<<"${t_paths}"
-
-    if [[ ${#t_paths[@]} -gt 0 ]]; then
-      for path in "${t_paths[@]}"; do
-        candidates+=$(search_path "$path")
-      done
-    fi
-  fi
+  candidates=$(candidate_list)
 
   selected=$(expand_path "$(echo "$candidates" | fzf)")
 fi
