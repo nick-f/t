@@ -10,17 +10,20 @@ t_paths=${T_PATHS:-}
 t_paths_delimiter=${T_PATHS_DELIMITER:- }
 
 help_text() {
-	echo "t - https://github.com/nick-f/t
+	echo -e "t - https://github.com/nick-f/t
 
-usage: [environment_variables] $(basename "$0")
+usage: [environment_variables] $(basename "$0") [options]
 
 Set T_PATHS in your shell profile or on a per-command basis to search additional directories.
+
+Options
+  --help, -h\tDisplay this help text
 
 Environment variables
   T_PATHS
     List of paths to search, separated by T_PATHS_DELIMITER. These should be
     absolute paths unless you know what you're doing.
-    Example: T_PATHS="~/Code ~"
+    Example: T_PATHS=\"~/Code ~\"
 
   T_PATHS_DELIMITER
     Delimiter used when specifying paths. Change this if you have paths
@@ -57,7 +60,7 @@ candidate_list() {
 	echo "$candidates"
 }
 
-if [[ "$1" = "--help" ]]; then
+if [[ "$1" = "--help" || "$1" = "-h" ]]; then
 	help_text
 	exit 0
 fi
