@@ -20,7 +20,7 @@ Environment variables
   T_PATHS
     List of paths to search, separated by T_PATHS_DELIMITER. These should be
     absolute paths unless you know what you're doing.
-    Example: T_PATHS="~/Code ~"
+    Example: T_PATHS=\"~/Code ~\"
 
   T_PATHS_DELIMITER
     Delimiter used when specifying paths. Change this if you have paths
