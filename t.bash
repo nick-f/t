@@ -83,4 +83,8 @@ if ! tmux has-session -t="$dirname" 2> /dev/null; then
 	tmux new-session -c "$selected" -ds "$dirname"
 fi
 
-tmux switch-client -t "$dirname"
+if [[ -z $TMUX ]]; then
+	tmux attach-session -t "$dirname"
+else
+	tmux switch-client -t "$dirname"
+fi
