@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # t - https://github.com/nick-f/t
-# Search your project directories and open a new Tmux session for the selected project
+# Search your project directories and open a new tmux session for the selected project
 #
 # Inspired by https://github.com/jessarcher/dotfiles/blob/master/scripts/t and by extension
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer

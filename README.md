@@ -1,12 +1,12 @@
 # t
 
-Search your project directories and open a new Tmux session for the selected project
+Search project directories and open a new tmux session for the selected project
 
 ## Installation
 
 ### Dependencies
 
-t uses [fzf](https://github.com/junegunn/fzf) and bash.
+t uses [fzf](https://github.com/junegunn/fzf), tmux, and bash.
 
 ### Homebrew
 
@@ -21,8 +21,8 @@ brew install nick-f/labs/t
 
 ### Manual installation
 
-Download [t.bash](https://github.com/nick-f/t/blob/main/t.bash) and place it in a folder
-that is included in your `PATH`.
+Download [t.bash](https://github.com/nick-f/t/blob/main/t.bash) and place it in
+a folder that is included in your `PATH`.
 
 To make it easier to type you can rename it to `t`.
 
@@ -44,9 +44,7 @@ Each path should be absolute.
 T_PATHS="~/Code /tmp/projects"
 ```
 
-Add a trailing slash to the path to also include that directory as an option.
-
-To include `~/Code` as well as any subdirectories of `~/Code`:
+Add a trailing slash to include the directory as well as any subdirectories.
 
 ```
 T_PATHS="~/Code/"
