@@ -44,6 +44,14 @@ Each path should be absolute.
 T_PATHS="~/Code /tmp/projects"
 ```
 
+Add a trailing slash to the path to also include that directory as an option.
+
+To include `~/Code` as well as any subdirectories of `~/Code`:
+
+```
+T_PATHS="~/Code/"
+```
+
 ### T_PATHS_DELIMITER
 
 The default delimiter is a space ` `. You might want to customise the delimiter
