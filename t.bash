@@ -25,6 +25,9 @@ Environment variables
     absolute paths unless you know what you're doing.
     Example: T_PATHS=\"~/Code ~\"
 
+		Add a trailing slash to include the path in the search candidates.
+		Example: T_PATHS=\"~/Code/\"
+
   T_PATHS_DELIMITER
     Delimiter used when specifying paths. Change this if you have paths
     that contain spaces in them.
@@ -33,6 +36,12 @@ Environment variables
 
 search_path() {
 	local path; path=$(expand_path "$1")
+
+	if [[ $path == */ ]]; then
+		local path_length; path_length=${#path}
+		path=${path::path_length-1}
+	fi
+
 	local paths; paths=$(find "$path" -maxdepth 1 -mindepth 1 -type d | sed 's#/Users/[a-zA-Z0-9]*/#~/#g' | sort --ignore-case)
 
 	echo -e "\n$paths"
@@ -52,6 +61,14 @@ candidate_list() {
 
 		if [[ ${#t_paths[@]} -gt 0 ]]; then
 			for path in "${t_paths[@]}"; do
+				
+				# Trim trailing new lines
+				path=$(echo "$path" | awk '{$1=$1;print}')
+
+				if [[ "$path" == */ ]]; then
+					candidates=$(echo -e "$candidates\n$path")
+				fi
+
 				candidates+=$(search_path "$path")
 			done
 		fi
