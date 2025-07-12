@@ -42,9 +42,10 @@ search_path() {
 		path=${path::path_length-1}
 	fi
 
-	local paths; paths=$(find "$path" -maxdepth 1 -mindepth 1 -type d | sed 's#/Users/[a-zA-Z0-9]*/#~/#g' | sort --ignore-case)
-
-	echo -e "\n$paths"
+	if [ -d "$path" ]; then
+		local paths; paths=$(find "$path" -maxdepth 1 -mindepth 1 -type d | sed 's#/Users/[a-zA-Z0-9]*/#~/#g' | sort --ignore-case)
+		echo -e "\n$paths"
+	fi
 }
 
 expand_path() {
